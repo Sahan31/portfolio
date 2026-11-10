@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sahan | Full-Stack & Front-End Web Developer Portfolio</title>
+  <style>
+    /* Global Reset & Theme */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #0b0f19;
+      color: #e2e8f0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11, 15, 25, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #38bdf8;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.95rem;
+      color: #94a3b8;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #38bdf8;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 120px 0 80px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero-badge {
+      padding: 6px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 9999px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 18px;
+      max-width: 800px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: #94a3b8;
+      max-width: 650px;
+      margin-bottom: 32px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Common Buttons */
+    .btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: #0284c7;
+      color: #ffffff;
+      border: 1px solid #0284c7;
+    }
+
+    .btn-primary:hover {
+      background-color: #0369a1;
+      border-color: #0369a1;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #e2e8f0;
+      border: 1px solid #334155;
+    }
+
+    .btn-outline:hover {
+      background: #1e293b;
+      border-color: #475569;
+    }
+
+    /* Section Styling */
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: #94a3b8;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-card {
+      background: #111827;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-4px);
+      border-color: #38bdf8;
+    }
+
+    .skill-card h4 {
+      font-size: 1.15rem;
+      color: #f8fafc;
+      margin-bottom: 8px;
+    }
+
+    .skill-card span {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      line-height: 1.4;
+      display: block;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+    }
+
+    .project-card {
+      background: #111827;
+      border: 1px solid #1e293b;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: #38bdf8;
+      box-shadow: 0 16px 32px -8px rgba(56, 189, 248, 0.15);
+    }
+
+    /* Card Image Thumbnail */
+    .project-thumb {
+      width: 100%;
+      height: 200px;
+      background-color: #1e293b;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .project-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      transition: transform 0.35s ease;
+    }
+
+    .project-card:hover .project-thumb img {
+      transform: scale(1.05);
+    }
+
+    /* Card Body */
+    .project-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .project-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #94a3b8;
+      background: #1e293b;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .project-status {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #22c55e;
+    }
+
+    .project-content h3 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .project-content p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      margin-bottom: 20px;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .tech-stack li {
+      font-size: 0.76rem;
+      font-weight: 500;
+      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .project-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .project-actions .btn {
+      flex: 1;
+      padding: 10px 14px;
+      font-size: 0.88rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #1e293b;
+      padding: 35px 0;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .nav-links {
+        display: none;
+      }
+      .project-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="#hero" class="logo">Sahan.dev</a>
+      <ul class="nav-links">
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero container">
+    <div class="hero-badge">Web Developer Portfolio</div>
+    <h1>Building Interactive, Fast & Responsive <span>Web Applications</span></h1>
+    <p>Developing scalable web apps using React 18, TypeScript, modern JavaScript, and secure backend database architectures.</p>
+    <div class="hero-buttons">
+      <a href="#projects" class="btn btn-primary">View Featured Projects ↓</a>
+    </div>
+  </section>
+
+  <!-- Technical Stack Section -->
+  <section id="skills" class="container">
+    <div class="section-title">
+      <h2>Technical Stack</h2>
+      <p>Core programming languages, frameworks, and backend tools utilized across production builds.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h4>React 18 & Modern JS</h4>
+        <span>Modular JSX Architecture, TypeScript & ES6+ DOM APIs</span>
+      </div>
+      <div class="skill-card">
+        <h4>Styling & UI Systems</h4>
+        <span>Tailwind CSS, Bootstrap 5 & Custom CSS3 Grid/Flexbox</span>
+      </div>
+      <div class="skill-card">
+        <h4>Backend Engineering</h4>
+        <span>Node.js / Express REST APIs & PHP PDO Architecture</span>
+      </div>
+      <div class="skill-card">
+        <h4>Database & Build Tools</h4>
+        <span>MySQL (InnoDB Transactions), Vite 6 Bundler & Git</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="container">
+    <div class="section-title">
+      <h2>Featured Projects</h2>
+      <p>Production-ready applications deployed live with source repositories.</p>
+    </div>
+
+    <div class="projects-grid">
+      <!-- Project 1: Milano Fashion Store -->
+      <article class="project-card">
+        <div class="project-thumb">
+          <img src="img/fashion.png" />
+        </div>
+        <div class="project-body">
+          <div>
+            <div class="project-header">
+              <span class="project-tag">Full-Stack E-Commerce</span>
+              <span class="project-status">● Live</span>
+            </div>
+            <div class="project-content">
+              <h3>Milano Fashion Store</h3>
+              <p>A full-stack e-commerce SPA featuring categorized apparel showcases, shopping bag interface, and transactional order checkout with row-level database locking.</p>
+              <ul class="tech-stack">
+                <li>React 18</li>
+                <li>Node.js</li>
+                <li>Express.js</li>
+                <li>MySQL (InnoDB)</li>
+                <li>Bootstrap 5</li>
+                <li>Vite</li>
+                <li>RESTful API</li>
+              </ul>
+            </div>
+          </div>
+          <div class="project-actions">
+            <a href="https://milano-fashion-store.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Live Demo ↗</a>
+            <a href="https://github.com/Sahan31/milano-fashion-store" target="_blank" rel="noopener noreferrer" class="btn btn-outline">GitHub Code</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 2: Burger Shop -->
+      <article class="project-card">
+        <div class="project-thumb">
+          <img src="img/restuarent.png" alt="Burger Shop Ordering Preview" />
+        </div>
+        <div class="project-body">
+          <div>
+            <div class="project-header">
+              <span class="project-tag">Restaurant Web App</span>
+              <span class="project-status">● Live</span>
+            </div>
+            <div class="project-content">
+              <h3>Burger Shop Ordering System</h3>
+              <p>Interactive restaurant ordering and table reservation platform with custom item selections, TypeScript client validation, and a session-based PHP admin portal.</p>
+              <ul class="tech-stack">
+                <li>TypeScript</li>
+                <li>JavaScript (ES6+)</li>
+                <li>Tailwind CSS</li>
+                <li>PHP (PDO)</li>
+                <li>MySQL</li>
+                <li>REST APIs</li>
+                <li>HTML5/CSS3</li>
+              </ul>
+            </div>
+          </div>
+          <div class="project-actions">
+            <a href="https://burger-shop-ecru.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Live Demo ↗</a>
+            <a href="https://github.com/Sahan31/burger-shop" target="_blank" rel="noopener noreferrer" class="btn btn-outline">GitHub Code</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 3: Powerflow Gym -->
+      <article class="project-card">
+        <div class="project-thumb">
+          <img src="img/gym.png" alt="Powerflow Gym Preview" />
+        </div>
+        <div class="project-body">
+          <div>
+            <div class="project-header">
+              <span class="project-tag">Fitness Platform</span>
+              <span class="project-status">● Live</span>
+            </div>
+            <div class="project-content">
+              <h3>Powerflow Gym</h3>
+              <p>Multi-page fitness center web application featuring membership tier catalogs, real-time BMI assessment calculation, and authenticated admin lead handling.</p>
+              <ul class="tech-stack">
+                <li>Vanilla JavaScript (ES6+)</li>
+                <li>HTML5 / Multi-Page</li>
+                <li>Custom CSS3 (Grid/Flexbox)</li>
+                <li>PHP (PDO)</li>
+                <li>MySQL</li>
+                <li>Session Auth</li>
+              </ul>
+            </div>
+          </div>
+          <div class="project-actions">
+            <a href="https://powerflow-gym-public.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Live Demo ↗</a>
+            <a href="https://github.com/Sahan31/powerflow-gym" target="_blank" rel="noopener noreferrer" class="btn btn-outline">GitHub Code</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2026 Sahan. Built with clean HTML, CSS & modern web standards.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
